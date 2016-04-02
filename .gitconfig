@@ -1,0 +1,29 @@
+[alias]
+   co = checkout
+   st = status
+   ci = commit
+   di = diff
+   mg = merge
+   br = branch
+[color]
+   ui = auto
+[include]
+    path = ~/.gitconfig.local
+[core]
+	whitespace = trailing-space,space-before-tab
+	excludesfile = ~/.gitignore_global
+[http]
+	postBuffer = 524288000
+[push]
+	default = simple
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[pager]
+  log = diff-highlight | less
+  show = diff-highlight | less
+  diff = diff-highlight | less
