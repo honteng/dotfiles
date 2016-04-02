@@ -223,3 +223,14 @@ if [[ -e ~/.zshrc.local ]]; then
   source ~/.zshrc.local
 fi
 
+function precmd() {
+if [[ $TERM != linux ]]; then
+    print -Pn "\e]2;%~\a"
+fi
+}
+
+preexec () {
+if [[ $TERM != linux ]]; then
+print -Pn "\e]2;%~ :  $1\a"
+fi
+}
