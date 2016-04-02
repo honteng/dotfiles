@@ -110,20 +110,6 @@ alias fin='find . -iname '
 function f() { find . -iname "*$1*" ${@:2} }
 
 alias memo='vi ~/Dropbox/done2.txt'
-alias gogo='cd $GOPATH/src/github.com/honteng/'
-MODE=$GOPATH/src/tinkermode.com/
-alias mode='cd $MODE'
-
-# DEV aliases
-alias start_mongodb='mongod --dbpath ~/workspace/mongodb --rest 2>&1 > ~/workspace/logs/mongodb.log&'
-alias topaz='mode && go run cloud/topaz/main/main.go 2>&1 | tee logs/topaz.log'
-alias maze='mode && go run cloud/maze/main/maze_main.go 2>&1 | tee logs/maze.log'
-alias epcot='mode && go run cloud/epcot/main/epcot.go 2>&1 | tee logs/epcot.log'
-alias portal='cd $MODE/portal; rake && cd $GOPATH && go run src/tinkermode.com/portal/main/portal_main.go 2>&1 | tee $MODE/logs/portal.log'
-alias nifty_portal='cd $MODE/portal; rake nifty && cd $GOPATH && go run src/tinkermode.com/portal/main/portal_main.go 2>&1 | tee $MODE/logs/portal.log'
-alias mqtt='mode && go run cloud/mqtt/main/mqtts.go tcp localhost 1883 2>&1 | tee logs/mqtts.log'
-alias metro='mode && go run cloud/metro/main/main.go 2>&1 | tee logs/metro.log'
-alias hubble='mode && go run cloud/hubble/main/main.go 2>&1 | tee logs/hubble.log'
 
 alias pi='screen -X screen /dev/cu.usbserial 115200'
 alias edison='screen -X screen /dev/cu.usbserial-AJ035JTA 115200'
