@@ -144,12 +144,6 @@ export DOCKER_TLS_VERIFY=1
 
 # [[ -f `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
-[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
-gvm use go1.5.3
-export GOPATH=$HOME/workspace/go
-
-export PATH=$GOPATH/bin:$PATH
-
 # For autojump
 # [[ -s /Users/honten/.autojump/etc/profile.d/autojump.sh ]] && source /Users/honten/.autojump/etc/profile.d/autojump.sh
 
