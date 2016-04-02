@@ -120,6 +120,7 @@ alias topaz='mode && go run cloud/topaz/main/main.go 2>&1 | tee logs/topaz.log'
 alias maze='mode && go run cloud/maze/main/maze_main.go 2>&1 | tee logs/maze.log'
 alias epcot='mode && go run cloud/epcot/main/epcot.go 2>&1 | tee logs/epcot.log'
 alias portal='cd $MODE/portal; rake && cd $GOPATH && go run src/tinkermode.com/portal/main/portal_main.go 2>&1 | tee $MODE/logs/portal.log'
+alias nifty_portal='cd $MODE/portal; rake nifty && cd $GOPATH && go run src/tinkermode.com/portal/main/portal_main.go 2>&1 | tee $MODE/logs/portal.log'
 alias mqtt='mode && go run cloud/mqtt/main/mqtts.go tcp localhost 1883 2>&1 | tee logs/mqtts.log'
 alias metro='mode && go run cloud/metro/main/main.go 2>&1 | tee logs/metro.log'
 alias hubble='mode && go run cloud/hubble/main/main.go 2>&1 | tee logs/hubble.log'
@@ -141,7 +142,7 @@ export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2376
 export DOCKER_CERT_PATH=~/.boot2docker/certs/boot2docker-vm
 export DOCKER_TLS_VERIFY=1   
 
-[[ -f `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+# [[ -f `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 gvm use go1.5.3
@@ -238,36 +239,7 @@ function age() {
 }
 
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-### Added for Java env
-export JAVA_HOME=$(/usr/libexec/java_home)
-
-### EC2 tools
-export EC2_HOME=~/bin/ec2/ec2-api-tools-1.7.3.2/
-export PATH=$PATH:$EC2_HOME/bin
-
-## For 8266 toolchain
-export PATH=$GOPATH/bin:$PATH
-export PATH=/Volumes/case-sensitive/esp-open-sdk/xtensa-lx106-elf/bin:$PATH
-
-## ADB
-
-export PATH=/Users/honten/Library/Android/sdk/platform-tools:$PATH
-#
-## For VerneMQ
-export PATH=$PATH:/Users/honten/workspace/tmp/vernemq/_build/default/rel/vernemq/bin
-
-# Docker
-export DOCKER_HOST=tcp://192.168.99.100:2376
-export DOCKER_MACHINE_NAME=default
-export DOCKER_TLS_VERIFY=1
-export DOCKER_CERT_PATH=/Users/honten/.docker/machine/certs
-
-# PostgreSQL
-export PGDATA=/usr/local/var/postgres
-alias pgstart="pg_ctl -l /usr/local/var/postgres/server.log start"
-alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
-
+if [[ -e ~/.zshrc.local ]]; then
+  source ~/.zshrc.local
+fi
 
