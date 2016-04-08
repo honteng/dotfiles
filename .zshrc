@@ -109,8 +109,6 @@ alias fn='find . -name '
 alias fin='find . -iname '
 function f() { find . -iname "*$1*" ${@:2} }
 
-alias memo='vi ~/Dropbox/done2.txt'
-
 alias pi='screen -X screen /dev/cu.usbserial 115200'
 alias edison='screen -X screen /dev/cu.usbserial-AJ035JTA 115200'
 alias ika='cd $MODE/devices/tako/ua'
