@@ -1,7 +1,11 @@
 #!/bin/bash
-cd ~
-git clone https://github.com/honteng/dotfiles.git
-cd dotfiles
+pushd ~
+if [ ! -d dotfiles ]; then
+  git clone https://github.com/honteng/dotfiles.git
+fi
+
+pushd dotfiles
+git checkout
 ./dotfiles_link.sh
 git submodule init
 git submodule update --recursive
@@ -17,4 +21,6 @@ if [[ $platform == 'linux' ]]; then
    sudo cp ./linux/peco /usr/local/bin
    sudo chmod a+x /usr/local/bin/peco
 fi
+popd
+popd
  
