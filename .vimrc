@@ -173,3 +173,7 @@ set completeopt-=preview
 
 " Ag
 nnoremap \ :Ag<Space> 
+
+" For Japanese English input switch
+inoremap <silent> <C-j> <Nop>
+inoremap <silent> <C-;> <Nop>
