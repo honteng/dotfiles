@@ -24,6 +24,8 @@ git submodule init
 git submodule update --recursive
 
 if [[ $platform == 'linux' ]]; then
+   echo "--------------"
+   pwd 
    sudo apt-get -y --force-yes install zsh
    sudo cp ./linux/peco /usr/local/bin
    sudo chmod a+x /usr/local/bin/peco
