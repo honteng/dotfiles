@@ -6,3 +6,14 @@ cd dotfiles
 git submodule init
 git submodule update --recursive
 
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+   platform='linux'
+fi
+
+if [[ $platform == 'linux' ]]; then
+   sudo apt-get install zsh
+   sudo cp ./linux/peco /usr/local/bin
+fi
+ 
