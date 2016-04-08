@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 cd ~
 git clone https://github.com/honteng/dotfiles.git
 cd dotfiles
@@ -15,5 +15,6 @@ fi
 if [[ $platform == 'linux' ]]; then
    sudo apt-get install zsh
    sudo cp ./linux/peco /usr/local/bin
+   sudo chmod a+x /usr/local/bin/peco
 fi
  
