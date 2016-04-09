@@ -22,6 +22,7 @@ NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'ervandew/supertab'
 NeoBundle 'rking/ag.vim'
+NeoBundle 'vimwiki/vimwiki.git'
 
 " Required:
 call neobundle#end()

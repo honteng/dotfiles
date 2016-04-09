@@ -4,3 +4,4 @@ neobundle.vim
 supertab
 vim-colorschemes
 vim-go
+vimwiki
