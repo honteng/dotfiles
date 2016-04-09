@@ -178,3 +178,7 @@ nnoremap \ :Ag<Space>
 " For Japanese English input switch
 inoremap <silent> <C-j> <Nop>
 inoremap <silent> <C-;> <Nop>
+
+" Timestamp
+nnoremap <F5> m'A<C-R>="\t".strftime('[%H:%M]')<CR><Esc>``
+
