@@ -1,3 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/Users/honten/workspace/go/src/tinkermode.com/portal/static/devicesim/js'
+let g:netrw_dirhist_2='/Users/honten/workspace/go/src/tinkermode.com/portal/templates'
+let g:netrw_dirhist_3='/Users/honten/Downloads/react-tutorial-master'
+let g:netrw_dirhist_4='/Users/honten/Downloads/react-tutorial-master/public'
+let g:netrw_dirhist_5='/Users/honten/Downloads/react-tutorial-master/public/scripts'
+let g:netrw_dirhist_6='/Users/honten/workspace/go/src/tinkermode.com/projects'
+let g:netrw_dirhist_7='/Users/honten/workspace/go/src/tinkermode.com/projects/ModeDeviceCC3200'
