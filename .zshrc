@@ -113,6 +113,7 @@ alias pi='screen -X screen /dev/cu.usbserial 115200'
 alias edison='screen -X screen /dev/cu.usbserial-AJ035JTA 115200'
 alias ika='cd $MODE/devices/tako/ua'
 alias raml2html_mode='node ~/workspace/go/src/tinkermode.com/tools/raml2html/lib'
+alias ag='rg -S'
 
 alias gittree='git log --graph --decorate --oneline'
 
@@ -139,23 +140,39 @@ autoload -U compinit && compinit
 # Peco settings to search command
 function exists { which $1 &> /dev/null }
 
-if exists peco; then
-  function peco-select-history() {
-      local tac
-      if which tac > /dev/null; then
-          tac="tac"
-      else
-          tac="tail -r"
-      fi
-      BUFFER=$(\history -n 1 | \
-          eval $tac | \
-          peco --query "$LBUFFER")
-      CURSOR=$#BUFFER
-      zle clear-screen
-  }
-  zle -N peco-select-history
-  bindkey '^r' peco-select-history
+#if exists peco; then
+#  function peco-select-history() {
+#      local tac
+#      if which tac > /dev/null; then
+#          tac="tac"
+#      else
+#          tac="tail -r"
+#      fi
+#      BUFFER=$(\history -n 1 | \
+#          eval $tac | \
+#          peco --query "$LBUFFER")
+#      CURSOR=$#BUFFER
+#      zle clear-screen
+#  }
+#  zle -N peco-select-history
+#  bindkey '^r' peco-select-history
+#
+#fi
 
+if which peco &> /dev/null; then
+  function peco_select_history() {
+    local tac
+    { which gtac &> /dev/null && tac="gtac" } || \
+      { which tac &> /dev/null && tac="tac" } || \
+      tac="tail -r"
+    BUFFER=$(fc -l -n 1 | eval $tac | \
+                peco --layout=bottom-up --query "$LBUFFER")
+    CURSOR=$#BUFFER # move cursor
+    zle -R -c       # refresh
+  }
+
+  zle -N peco_select_history
+  bindkey '^R' peco_select_history
 fi
 
 # GNU Screen setting for chaging title

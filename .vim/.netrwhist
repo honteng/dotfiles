@@ -1,9 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/honten/workspace/go/src/tinkermode.com/portal/static/devicesim/js'
-let g:netrw_dirhist_2='/Users/honten/workspace/go/src/tinkermode.com/portal/templates'
-let g:netrw_dirhist_3='/Users/honten/Downloads/react-tutorial-master'
-let g:netrw_dirhist_4='/Users/honten/Downloads/react-tutorial-master/public'
-let g:netrw_dirhist_5='/Users/honten/Downloads/react-tutorial-master/public/scripts'
-let g:netrw_dirhist_6='/Users/honten/workspace/go/src/tinkermode.com/projects'
-let g:netrw_dirhist_7='/Users/honten/workspace/go/src/tinkermode.com/projects/ModeDeviceCC3200'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/honten/workspace/go/src/tinkermode.com/devops/docker/mode_build'
+let g:netrw_dirhist_2='/'
+let g:netrw_dirhist_3='/Users/honten/workspace/go/src/tinkermode.com/projects/alps_rpi_gw/log_uploader'
+let g:netrw_dirhist_4='/Users/honten/.ssh'

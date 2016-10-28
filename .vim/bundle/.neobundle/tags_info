@@ -1,7 +1,13 @@
 ag.vim
+cpsm
 ctrlp.vim
 neobundle.vim
-supertab
+neocomplete.vim
+neosnippet
+neosnippet-snippets
+rust.vim
+srcery
 vim-colorschemes
 vim-go
-vimwiki
+vim-indent-guides
+vim-trailing-whitespace
