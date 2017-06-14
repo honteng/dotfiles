@@ -110,10 +110,7 @@ alias fin='find . -iname '
 function f() { find . -iname "*$1*" ${@:2} }
 
 alias pi='screen -X screen /dev/cu.usbserial 115200'
-alias edison='screen -X screen /dev/cu.usbserial-AJ035JTA 115200'
-alias ika='cd $MODE/devices/tako/ua'
 alias raml2html_mode='node ~/workspace/go/src/github.com/moderepo/main/tools/raml2html/lib'
-alias ag='rg -S'
 
 alias gittree='git log --graph --decorate --oneline'
 
@@ -122,18 +119,8 @@ function ec2() { ssh -i ~/.ssh/multimode1.pem ubuntu@$1 ${@:2} }
 
 function ec2_cp() { scp -i ~/.ssh/multimode1.pem  ${@:1} }
 
-# Docker
-# export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2376
-# export DOCKER_CERT_PATH=~/.boot2docker/certs/boot2docker-vm
-# export DOCKER_TLS_VERIFY=1   
-
 # Python
 export PYTHONSTARTUP="/Users/honten/.pyrc"
-
-# [[ -f `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
-
-# For autojump
-# [[ -s /Users/honten/.autojump/etc/profile.d/autojump.sh ]] && source /Users/honten/.autojump/etc/profile.d/autojump.sh
 
 autoload -U compinit && compinit
 
