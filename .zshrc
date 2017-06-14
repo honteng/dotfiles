@@ -91,7 +91,7 @@ export JAVA_TOOL_OPTIONS="-Dfile.encoding=utf8"
 export MAVEN_OPTS="-Xmx2048m -XX:MaxPermSize=512m"
 
 alias ll='ls -alh'
-alias vi=vim
+alias vi=nvim
 
 alias -g L='| less'
 alias -g H='| head'
@@ -112,7 +112,7 @@ function f() { find . -iname "*$1*" ${@:2} }
 alias pi='screen -X screen /dev/cu.usbserial 115200'
 alias edison='screen -X screen /dev/cu.usbserial-AJ035JTA 115200'
 alias ika='cd $MODE/devices/tako/ua'
-alias raml2html_mode='node ~/workspace/go/src/tinkermode.com/tools/raml2html/lib'
+alias raml2html_mode='node ~/workspace/go/src/github.com/moderepo/main/tools/raml2html/lib'
 alias ag='rg -S'
 
 alias gittree='git log --graph --decorate --oneline'
@@ -123,9 +123,9 @@ function ec2() { ssh -i ~/.ssh/multimode1.pem ubuntu@$1 ${@:2} }
 function ec2_cp() { scp -i ~/.ssh/multimode1.pem  ${@:1} }
 
 # Docker
-export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2376
-export DOCKER_CERT_PATH=~/.boot2docker/certs/boot2docker-vm
-export DOCKER_TLS_VERIFY=1   
+# export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2376
+# export DOCKER_CERT_PATH=~/.boot2docker/certs/boot2docker-vm
+# export DOCKER_TLS_VERIFY=1   
 
 # Python
 export PYTHONSTARTUP="/Users/honten/.pyrc"
@@ -140,25 +140,6 @@ autoload -U compinit && compinit
 # Peco settings to search command
 function exists { which $1 &> /dev/null }
 
-#if exists peco; then
-#  function peco-select-history() {
-#      local tac
-#      if which tac > /dev/null; then
-#          tac="tac"
-#      else
-#          tac="tail -r"
-#      fi
-#      BUFFER=$(\history -n 1 | \
-#          eval $tac | \
-#          peco --query "$LBUFFER")
-#      CURSOR=$#BUFFER
-#      zle clear-screen
-#  }
-#  zle -N peco-select-history
-#  bindkey '^r' peco-select-history
-#
-#fi
-
 if which peco &> /dev/null; then
   function peco_select_history() {
     local tac
@@ -166,7 +147,7 @@ if which peco &> /dev/null; then
       { which tac &> /dev/null && tac="tac" } || \
       tac="tail -r"
     BUFFER=$(fc -l -n 1 | eval $tac | \
-                peco --layout=bottom-up --query "$LBUFFER")
+                peco --layout=top-down --query "$LBUFFER")
     CURSOR=$#BUFFER # move cursor
     zle -R -c       # refresh
   }
@@ -252,3 +233,18 @@ if [[ $TERM != linux ]]; then
 print -Pn "\e]2;%~ :  $1\a"
 fi
 }
+
+
+function pero() {
+  if [ $# -eq 1 ]; then
+    exec ag "$@" . | peco --exec 'awk -F : '"'"'{print "+" $2 " " $1}'"'"' | xargs less -N'
+  else
+    echo 'Usage: pero QUERY'
+  fi
+}
+
+
+LESSPIPE=`which src-hilite-lesspipe.sh`
+export LESSOPEN="| ${LESSPIPE} %s"
+export LESS='-R'
+

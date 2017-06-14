@@ -14,6 +14,7 @@
 	excludesfile = ~/.gitignore_global
 [http]
 	postBuffer = 524288000
+	sslVerify = true
 [push]
 	default = simple
 [filter "lfs"]
@@ -29,3 +30,8 @@
 	diff = diff-highlight | less
 [diff]
 	compactionHeuristic = true
+[http "https://gopkg.in"]
+  followRedirects = true
+[ghq]
+  root = ~/workspace/ghq
+  root = ~/workspace/go/src

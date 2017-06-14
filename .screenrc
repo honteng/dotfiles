@@ -8,9 +8,7 @@ defencoding utf-8
 term xterm-color
 
 # no start up message
-startup_message off
-
-# key
+startup_message off # key
 escape ^z^z
 
 # don't remove windows from the window list as soon as window process exits
@@ -83,10 +81,10 @@ bind -c layout ^N eval 'layout next' 'command -c layout' 'layout show'
 bind -c layout ^P eval 'layout prev' 'command -c layout' 'layout show'
 
 # create window
-screen -t topaz
-screen -t maze
-screen -t portal
-screen -t epcot
+screen -t memo
+screen -t vim
+screen -t test
+screen -t remote
 screen -t console1
 screen -t console2
 screen -t console3
@@ -132,10 +130,19 @@ select 2
 layout select 0
 layout show
 
-bind h focus left
-bind l focus right
-bind k focus up
-bind j focus down
+bind ^h focus left
+bind ^l focus right
+bind ^k focus up
+bind ^j focus down
+#bind h focus left
+#bind l focus right
+#bind k focus up
+#bind j focus down
+
+# resize height
+bind r resize 90
+
+
 
 # copy the screen pastbuffer to the MacOSX pastebord
 # bufferfile screen/screen-exchange
@@ -144,3 +151,5 @@ bindkey -m Y   eval 'stuff Y'    'writebuf' 'exec sh -c "/usr/bin/pbcopy < /tmp/
 bindkey -m W   eval 'stuff W'    'writebuf' 'exec sh -c "/usr/bin/pbcopy < /tmp/screen-exchange"'
 
 vbell on
+
+maptimeout 0

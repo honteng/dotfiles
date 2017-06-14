@@ -1,46 +1,25 @@
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin() " let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
-"NeoBundle Scripts-----------------------------
-if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
-  endif
+Plugin 'ctrlpvim/ctrlp.vim'
+" Plugin 'nixprime/cpsm'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'fatih/vim-go'
+Plugin 'roosta/srcery'
+" Plugin 'ervandew/supertab'
+Plugin 'rking/ag.vim'
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
+Plugin 'nathanaelkane/vim-indent-guides'
+" Plugin 'rust-lang/rust.vim'
+Plugin 'bronson/vim-trailing-whitespace'
 
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
+call vundle#end()            " required
+filetype plugin indent on    " required
 
-" Required:
-call neobundle#begin(expand('~/.vim/bundle'))
 
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" Add or remove your Bundles here:
-NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'nixprime/cpsm'
-NeoBundle 'flazz/vim-colorschemes'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'roosta/srcery'
-" NeoBundle 'ervandew/supertab'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'rust-lang/rust.vim'
-NeoBundle 'bronson/vim-trailing-whitespace'
-" NeoBundle 'jiangmiao/auto-pairs'
-" Required:
-call neobundle#end()
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-"End NeoBundle Scripts-------------------------
 
 set clipboard=unnamed
 set nocindent
@@ -143,7 +122,6 @@ au BufRead,BufNewFile *.mustache set filetype=html
 
 let g:neocomplcache_enable_at_startup = 1
 
-exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 set completeopt=menu,preview
 
 " SuperTab
@@ -178,13 +156,16 @@ if executable('ag')
 "  let g:ctrlp_use_caching=0 " Not to use cache
   let g:ctrlp_user_command='ag %s -i --hidden -g ""'
 endif
-let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+" let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 
 " Vim-Go
 au FileType go nmap gb <Plug>(go-build)
 au FileType go nmap gt <Plug>(go-test)
 let g:go_fmt_command = "goimports"
 set completeopt-=preview
+autocmd FileType go :highlight goExtraVars cterm=bold ctermfg=136
+autocmd FileType go :match goExtraVars /\<ok\>\|\<err\>/
+
 
 " Ag
 nnoremap \ :Ag<Space> 
@@ -251,10 +232,10 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
+" " Enable heavy omni completion.
+" if !exists('g:neocomplete#sources#omni#input_patterns')
+"   let g:neocomplete#sources#omni#input_patterns = {}
+" endif
 "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
@@ -280,4 +261,8 @@ set incsearch " incremental search
 set hlsearch  " highlight
 nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR> " no hilight when esc is pressed twice
 
+" easy replace
+nnoremap sr :%s/\<<C-r><C-w>\>/
 
+
+set swapfile
