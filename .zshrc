@@ -91,7 +91,7 @@ export JAVA_TOOL_OPTIONS="-Dfile.encoding=utf8"
 export MAVEN_OPTS="-Xmx2048m -XX:MaxPermSize=512m"
 
 alias ll='ls -alh'
-alias vi=nvim
+alias vi=vim
 
 alias -g L='| less'
 alias -g H='| head'

@@ -15,7 +15,7 @@ Plugin 'Shougo/neosnippet-snippets'
 Plugin 'nathanaelkane/vim-indent-guides'
 " Plugin 'rust-lang/rust.vim'
 Plugin 'bronson/vim-trailing-whitespace'
-
+Plugin 'leafgarland/typescript-vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 

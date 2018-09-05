@@ -140,7 +140,7 @@ bind ^j focus down
 #bind j focus down
 
 # resize height
-bind r resize 90
+bind r resize 70
 
 
 
