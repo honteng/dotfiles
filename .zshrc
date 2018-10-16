@@ -235,3 +235,5 @@ LESSPIPE=`which src-hilite-lesspipe.sh`
 export LESSOPEN="| ${LESSPIPE} %s"
 export LESS='-R'
 
+export PATH="/usr/local/opt/node@8/bin:$PATH"
+export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"

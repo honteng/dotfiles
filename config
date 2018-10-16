@@ -14,6 +14,12 @@ Host vrcdev
   User ec2-user
   ProxyCommand ssh -W %h:%p appadmin
 
+Host azapa
+  HostName 172.31.26.8
+  IdentityFile ~/.ssh/apps1.pem
+  User ec2-user
+  ProxyCommand ssh -W %h:%p appadmin
+
 host autogw
   HostName 192.168.7.2
   User root
@@ -24,4 +30,14 @@ host sensorgw
   User ubuntu
   IdentityFile ~/.ssh/id_rsa
 
+Host ota_sc
+  HostName ec2-35-162-137-98.us-west-2.compute.amazonaws.com
+  IdentityFile ~/.ssh/multimode1.pem
+  User ubuntu
+  ProxyCommand ssh -W %h:%p admin
 
+Host ota
+  HostName ip-172-31-40-118.us-west-2.compute.internal
+  IdentityFile ~/.ssh/multimode1.pem
+  User ec2-user
+  ProxyCommand ssh -W %h:%p admin
