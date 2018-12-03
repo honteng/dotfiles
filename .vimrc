@@ -16,10 +16,23 @@ Plugin 'nathanaelkane/vim-indent-guides'
 " Plugin 'rust-lang/rust.vim'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'leafgarland/typescript-vim'
+
+" TypeScript LSP
+Plugin 'prabirshrestha/async.vim'
+Plugin 'prabirshrestha/vim-lsp'
+Plugin 'ryanolsonx/vim-lsp-typescript'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-
+" TypeScript LSP
+if executable('typescript-language-server')
+	au User lsp_setup call lsp#register_server({
+				\ 'name': 'typescript-language-server',
+				\ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+				\ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+				\ 'whitelist': ['typescript'],
+				\ })
+endif
 
 set clipboard=unnamed
 set nocindent
@@ -161,6 +174,7 @@ endif
 " Vim-Go
 au FileType go nmap gb <Plug>(go-build)
 au FileType go nmap gt <Plug>(go-test)
+au FileType go nmap gi <Plug>(go-iferr)
 let g:go_fmt_command = "goimports"
 set completeopt-=preview
 autocmd FileType go :highlight goExtraVars cterm=bold ctermfg=136
