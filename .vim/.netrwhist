@@ -1,10 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/Users/honten/go/src/github.com/moderepo/applications/projects/suzuki_vrc/device/blebutton'
-let g:netrw_dirhist_2='/Users/honten/go/src/github.com/moderepo/applications/projects/vrceval/devops/device'
-let g:netrw_dirhist_3='/Users/honten/go/src/github.com/moderepo/applications/solutions/vrc/updater/test_data'
-let g:netrw_dirhist_4='/Users/honten/go/src/github.com/moderepo/applications/solutions/vrc/log_uploader'
-let g:netrw_dirhist_5='/Users/honten/go/src/github.com/moderepo/applications/solutions/vrc'
-let g:netrw_dirhist_6='/Users/honten/.ssh'
-let g:netrw_dirhist_7='/Users/honten/go/src/github.com/moderepo/applications/projects/suzuki_vrc/streamer'
-let g:netrw_dirhist_8='/Users/honten/.vim'
+let g:netrw_dirhist_cnt =0
