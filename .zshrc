@@ -19,8 +19,8 @@ zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "paulmelnikow/zsh-startup-timer"
-# zplug "tysonwolker/iterm-tab-colors"
-zplug "peterhurford/up.zsh"
+zplug "tysonwolker/iterm-tab-colors"
+# zplug "peterhurford/up.zsh"
 zplug "jimeh/zsh-peco-history"
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 
@@ -42,13 +42,17 @@ preexec () {
   echo -ne "\ek${1%% *}\e\\"
 }
 
+unsetopt no_share_history
 export DIRSTACKSIZE=8
-setopt autopushd pushdminus pushdsilent pushdtohome
+setopt autopushd pushdminus pushdsilent
 setopt auto_cd pushd_ignore_dups share_history
+setopt INC_APPEND_HISTORY
 
 umask 0006
 export HISTFILE=~/.zsh_history
 export HISTSIZE=10000
+export SAVEHIST=10000000
+
 # export TERM=xterm-color
 export CLICOLOR=1
 export LSCOLORS=DxGxcxdxCxegedabagacad
@@ -80,6 +84,9 @@ setopt always_last_prompt
 setopt print_eight_bit
 setopt extended_glob
 setopt globdots
+
+setopt auto_cd
+setopt autocd autopushd pushdminus pushdsilent cdablevars
 
 if [[ -e ~/.zshrc.local ]]; then
   source ~/.zshrc.local

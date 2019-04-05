@@ -1,2 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =0
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/Users/honten/go/src/github.com/moderepo/main/cloud/cve_watcher/watcher'
+let g:netrw_dirhist_2='/Users/honten/go/src/github.com/moderepo/main/cloud/cve_watcher/watcher/main'
+let g:netrw_dirhist_3='/private/tmp/rake_records'
+let g:netrw_dirhist_4='/private/tmp/rake_records/353'
+let g:netrw_dirhist_5='/Users/honten/go/src/github.com/moderepo/applications/projects/vrceval/experimental/network_test'

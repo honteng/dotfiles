@@ -1,28 +1,30 @@
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin() " let Vundle manage Vundle, required
+
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'Shougo/neocomplete.vim'
 
 Plugin 'ctrlpvim/ctrlp.vim'
 " Plugin 'nixprime/cpsm'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'fatih/vim-go'
-Plugin 'roosta/srcery'
-" Plugin 'ervandew/supertab'
-Plugin 'rking/ag.vim'
-Plugin 'Shougo/neocomplete.vim'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
-Plugin 'nathanaelkane/vim-indent-guides'
-" Plugin 'rust-lang/rust.vim'
+" Plugin 'roosta/srcery'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'leafgarland/typescript-vim'
 
 " TypeScript LSP
-Plugin 'prabirshrestha/async.vim'
-Plugin 'prabirshrestha/vim-lsp'
-Plugin 'ryanolsonx/vim-lsp-typescript'
+"Plugin 'prabirshrestha/async.vim'
+"Plugin 'prabirshrestha/vim-lsp'
+"Plugin 'prabirshrestha/asyncomplete.vim'
+"Plugin 'prabirshrestha/asyncomplete-lsp.vim'
+"Plugin 'ryanolsonx/vim-lsp-typescript'
+"Plugin 'natebosch/vim-lsc'
+
+
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+let g:lsp_async_completion = 1
 
 " TypeScript LSP
 if executable('typescript-language-server')
@@ -32,6 +34,19 @@ if executable('typescript-language-server')
 				\ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
 				\ 'whitelist': ['typescript'],
 				\ })
+endif
+
+" Golps
+if executable('gopls')
+  augroup LspGo
+    au!
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'go-lang',
+        \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+        \ 'whitelist': ['go'],
+        \ })
+    autocmd FileType go setlocal omnifunc=lsp#complete
+  augroup END
 endif
 
 set clipboard=unnamed
@@ -174,15 +189,10 @@ endif
 " Vim-Go
 au FileType go nmap gb <Plug>(go-build)
 au FileType go nmap gt <Plug>(go-test)
-au FileType go nmap gi <Plug>(go-iferr)
 let g:go_fmt_command = "goimports"
 set completeopt-=preview
 autocmd FileType go :highlight goExtraVars cterm=bold ctermfg=136
 autocmd FileType go :match goExtraVars /\<ok\>\|\<err\>/
-
-
-" Ag
-nnoremap \ :Ag<Space> 
 
 " For Japanese English input switch
 inoremap <silent> <C-j> <Nop>
@@ -215,9 +225,9 @@ if !exists('g:neocomplete#keyword_patterns')
 endif
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
+" " Plugin key-mappings.
+" inoremap <expr><C-g>     neocomplete#undo_completion()
+" inoremap <expr><C-l>     neocomplete#complete_common_string()
 
 " " Recommended key-mappings.
 " " <CR>: close popup and save indent.
@@ -229,14 +239,9 @@ inoremap <expr><C-l>     neocomplete#complete_common_string()
 " endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
 " AutoComplPop like behavior.
-let g:neocomplete#enable_auto_select = 1
+let g:neocomplete#enable_auto_select = 0
 
 
 " Enable omni completion.
@@ -246,30 +251,18 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-" " Enable heavy omni completion.
-" if !exists('g:neocomplete#sources#omni#input_patterns')
-"   let g:neocomplete#sources#omni#input_patterns = {}
-" endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-" let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+" " Plugin key-mappings.
+" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
-imap <expr><TAB>
- \ pumvisible() ? "\<C-n>" :
- \ neosnippet#expandable_or_jumpable() ?
- \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" imap <expr><TAB>
+"  \ pumvisible() ? "\<C-n>" :
+"  \ neosnippet#expandable_or_jumpable() ?
+"  \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+" \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 set incsearch " incremental search
 set hlsearch  " highlight
