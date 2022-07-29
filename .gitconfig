@@ -8,7 +8,9 @@
 [color]
    ui = auto
 [include]
-    path = ~/.gitconfig.local
+  path = ~/.gitconfig.local
+[includeIf "gitdir:~/workspace/convoyinc/"]
+  path = ~/.gitconfig-convoy
 [core]
 	whitespace = trailing-space,space-before-tab
 	excludesfile = ~/.gitignore_global
@@ -37,4 +39,9 @@
   root = ~/workspace/go/src
 [user]
 	name = Naoki Takano
-	email = honten@tinkermode.com
+	email = naoki.takano@convoy.com
+[url "https://github.com/"]
+	insteadOf = ssh://git@github.com/
+	insteadOf = git@github.com:
+[credential]
+	helper = osxkeychain

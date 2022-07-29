@@ -17,10 +17,9 @@ zplug clear
 
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-completions"
+# zplug "zsh-users/zsh-completions"
 zplug "paulmelnikow/zsh-startup-timer"
 zplug "tysonwolker/iterm-tab-colors"
-# zplug "peterhurford/up.zsh"
 zplug "jimeh/zsh-peco-history"
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 
@@ -68,6 +67,9 @@ function f() { find . -iname "*$1*" ${@:2} }
 # No beep
 setopt nolistbeep
 
+alias beep='say -v "Veena" "done" && osascript -e "display notification \"All done\" with title \"Done\""'
+
+
 autoload -U compinit && compinit
 
 setopt auto_param_slash
@@ -92,4 +94,21 @@ if [[ -e ~/.zshrc.local ]]; then
   source ~/.zshrc.local
 fi
 
+
+source /Users/naokitakano/.convoyrc
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
